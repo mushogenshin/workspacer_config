@@ -31,16 +31,24 @@ Action<IConfigContext> doConfig = (context) =>
 
     // CUSTOM FILTER
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Snipping"));
-    // ZBRUSH
-    // context.WindowRouter.AddFilter((window) => !window.Title.Contains("Save"));
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("FortiClient"));
+    // COPYING
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("Discovered"));
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("% complete"));
+    // OWN APPS
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("Swiss Army Knife"));  // Anastomia
     
     // CUSTOM ROUTE
+    // ZBRUSH
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("ZBrush 2021") ? context.WorkspaceContainer["one"] : null);
     // VS CODE
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Visual Studio Code") ? context.WorkspaceContainer["code6"] : null);
     // CHAT
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Discord") ? context.WorkspaceContainer["team7"] : null);
-    // MAYA
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("Output Window") ? context.WorkspaceContainer["log8"] : null);
+    // POWER OPTIONS
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Power Options") ? context.WorkspaceContainer["log8"] : null);
+    // // MAYA
+    // context.WindowRouter.AddRoute((window) => window.Title.Contains("Output Window") ? context.WorkspaceContainer["log8"] : null);
     // NOTION
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Notion") ? context.WorkspaceContainer["log8"] : null);
     // WEB
