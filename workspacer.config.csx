@@ -18,7 +18,7 @@ Action<IConfigContext> doConfig = (context) =>
     var actionMenu = context.AddActionMenu();
 
     // MULTIPLE MONITORS
-    context.WorkspaceContainer.CreateWorkspaces("one", "2drawing", "threeD", "remote", "five", "code6", "team7", "log8", "web9");
+    context.WorkspaceContainer.CreateWorkspaces("one", "2drawing", "threeD", "remote4", "five", "code6", "team7", "log8", "web9");
 
     // SINGLE MONITOR
     // var sticky = new StickyWorkspaceContainer(context, StickyWorkspaceIndexMode.Local);
@@ -39,6 +39,8 @@ Action<IConfigContext> doConfig = (context) =>
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Warning"));
     // OWN APPS
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Swiss Army Knife"));  // Anastomia
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("Asset Hunter"));  // Anastomia
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("MVP"));  // Anastomia
     
     // CUSTOM ROUTE
     // 2D
@@ -53,8 +55,8 @@ Action<IConfigContext> doConfig = (context) =>
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Autodesk Maya") ? context.WorkspaceContainer["threeD"] : null);
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Output Window") ? context.WorkspaceContainer["threeD"] : null);
     // REMOTE
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("Remote Desktop Connection") ? context.WorkspaceContainer["remote"] : null);
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("FortiClient") ? context.WorkspaceContainer["remote"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Remote Desktop Connection") ? context.WorkspaceContainer["remote4"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("FortiClient") ? context.WorkspaceContainer["remote4"] : null);
     // CODING
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Visual Studio Code") ? context.WorkspaceContainer["code6"] : null);
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Notepad++") ? context.WorkspaceContainer["code6"] : null);
@@ -62,6 +64,7 @@ Action<IConfigContext> doConfig = (context) =>
     context.WindowRouter.AddRoute((window) => window.Title.Contains("TOOL BOARD") ? context.WorkspaceContainer["code6"] : null);
     // CHAT
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Discord") ? context.WorkspaceContainer["team7"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Skype") ? context.WorkspaceContainer["team7"] : null);
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Microsoft Teams") ? context.WorkspaceContainer["team7"] : null);
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Outlook") ? context.WorkspaceContainer["team7"] : null);
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Reminder") ? context.WorkspaceContainer["team7"] : null);
