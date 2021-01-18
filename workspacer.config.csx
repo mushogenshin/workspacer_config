@@ -18,7 +18,7 @@ Action<IConfigContext> doConfig = (context) =>
     var actionMenu = context.AddActionMenu();
 
     // MULTIPLE MONITORS
-    context.WorkspaceContainer.CreateWorkspaces("one", "remote2", "three", "four", "five", "code6", "team7", "log8", "web9");
+    context.WorkspaceContainer.CreateWorkspaces("one", "2drawing", "threeD", "remote", "five", "code6", "team7", "log8", "web9");
 
     // SINGLE MONITOR
     // var sticky = new StickyWorkspaceContainer(context, StickyWorkspaceIndexMode.Local);
@@ -31,7 +31,6 @@ Action<IConfigContext> doConfig = (context) =>
 
     // CUSTOM FILTER
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Snipping"));
-    // context.WindowRouter.AddFilter((window) => !window.Title.Contains("FortiClient"));
     // COPYING
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Discovered"));
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("% complete"));
@@ -42,23 +41,41 @@ Action<IConfigContext> doConfig = (context) =>
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Swiss Army Knife"));  // Anastomia
     
     // CUSTOM ROUTE
+    // 2D
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Mischief") ? context.WorkspaceContainer["2drawing"] : null);
+
+    // 3D
     // ZBRUSH
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("ZBrush 2021") ? context.WorkspaceContainer["one"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("ZBrush 2021") ? context.WorkspaceContainer["threeD"] : null);
+    // HOUDINI
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Houdini") ? context.WorkspaceContainer["threeD"] : null);
+    // MAYA
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Autodesk Maya") ? context.WorkspaceContainer["threeD"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Output Window") ? context.WorkspaceContainer["threeD"] : null);
     // REMOTE
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("Remote Desktop Connection") ? context.WorkspaceContainer["remote2"] : null);
-    context.WindowRouter.AddRoute((window) => window.Title.Contains("FortiClient") ? context.WorkspaceContainer["remote2"] : null);
-    // VS CODE
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Remote Desktop Connection") ? context.WorkspaceContainer["remote"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("FortiClient") ? context.WorkspaceContainer["remote"] : null);
+    // CODING
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Visual Studio Code") ? context.WorkspaceContainer["code6"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Notepad++") ? context.WorkspaceContainer["code6"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("MongoDB Compass") ? context.WorkspaceContainer["code6"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("TOOL BOARD") ? context.WorkspaceContainer["code6"] : null);
     // CHAT
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Discord") ? context.WorkspaceContainer["team7"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Microsoft Teams") ? context.WorkspaceContainer["team7"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Outlook") ? context.WorkspaceContainer["team7"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Reminder") ? context.WorkspaceContainer["team7"] : null);
     // POWER OPTIONS
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Power Options") ? context.WorkspaceContainer["log8"] : null);
-    // // MAYA
-    // context.WindowRouter.AddRoute((window) => window.Title.Contains("Output Window") ? context.WorkspaceContainer["log8"] : null);
+    // WACOM
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Wacom Desktop Center") ? context.WorkspaceContainer["log8"] : null);
+    // VLC HACK
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("ptexTurntables") ? context.WorkspaceContainer["log8"] : null);
     // NOTION
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Notion") ? context.WorkspaceContainer["log8"] : null);
     // WEB
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Google Chrome") ? context.WorkspaceContainer["web9"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Mozilla Firefox") ? context.WorkspaceContainer["web9"] : null);
 
     // CUSTOM KEYBINDS
     // Modified from source at https://github.com/rickbutton/workspacer/blob/e58439adaf5f2ea0123a499467c115698adb107b/src/workspacer/Keybinds/KeybindManager.cs
