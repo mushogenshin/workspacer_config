@@ -18,7 +18,7 @@ Action<IConfigContext> doConfig = (context) =>
     var actionMenu = context.AddActionMenu();
 
     // MULTIPLE MONITORS
-    context.WorkspaceContainer.CreateWorkspaces("one", "two", "three", "four", "five", "code6", "team7", "log8", "web9");
+    context.WorkspaceContainer.CreateWorkspaces("one", "remote2", "three", "four", "five", "code6", "team7", "log8", "web9");
 
     // SINGLE MONITOR
     // var sticky = new StickyWorkspaceContainer(context, StickyWorkspaceIndexMode.Local);
@@ -31,16 +31,22 @@ Action<IConfigContext> doConfig = (context) =>
 
     // CUSTOM FILTER
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Snipping"));
-    context.WindowRouter.AddFilter((window) => !window.Title.Contains("FortiClient"));
+    // context.WindowRouter.AddFilter((window) => !window.Title.Contains("FortiClient"));
     // COPYING
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Discovered"));
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("% complete"));
+    // OWN DIALOGS
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("Info"));
+    context.WindowRouter.AddFilter((window) => !window.Title.Contains("Warning"));
     // OWN APPS
     context.WindowRouter.AddFilter((window) => !window.Title.Contains("Swiss Army Knife"));  // Anastomia
     
     // CUSTOM ROUTE
     // ZBRUSH
     context.WindowRouter.AddRoute((window) => window.Title.Contains("ZBrush 2021") ? context.WorkspaceContainer["one"] : null);
+    // REMOTE
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("Remote Desktop Connection") ? context.WorkspaceContainer["remote2"] : null);
+    context.WindowRouter.AddRoute((window) => window.Title.Contains("FortiClient") ? context.WorkspaceContainer["remote2"] : null);
     // VS CODE
     context.WindowRouter.AddRoute((window) => window.Title.Contains("Visual Studio Code") ? context.WorkspaceContainer["code6"] : null);
     // CHAT
